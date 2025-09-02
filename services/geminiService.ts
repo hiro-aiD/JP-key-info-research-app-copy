@@ -2,11 +2,13 @@
 import { GoogleGenAI } from "@google/genai";
 import type { SearchResult, Source } from '../types';
 
-if (!process.env.API_KEY) {
-    throw new Error("API_KEY environment variable is not set.");
+const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+
+if (!apiKey) {
+    throw new Error("VITE_GEMINI_API_KEY environment variable is not set.");
 }
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+const ai = new GoogleGenAI({ apiKey });
 
 const parseGeminiResponse = (responseText: string): Omit<SearchResult, 'sources' | 'timestamp'> => {
   const keyPoints = responseText.split('### 要点')[1]?.split('### 詳細')[0]?.trim().split('\n').map(pt => pt.replace(/^- /, '')).filter(pt => pt) || [];
