@@ -1,0 +1,5 @@
+{
+  "name": "日本語キーワード情報調査アプリ",
+  "description": "特定キーワードに関する最新情報をGemini APIのGrounding Tool機能を活用して調査し、整理された形で表示するWebアプリケーションです。",
+  "requestFramePermissions": []
+}
